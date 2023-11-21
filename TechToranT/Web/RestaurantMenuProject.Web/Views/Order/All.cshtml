@@ -1,0 +1,115 @@
+﻿@model OrderViewModel
+@using RestaurantMenuProject.Common
+
+@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+    || this.User.IsInRole(GlobalConstants.ChefRoleName) 
+    || this.User.IsInRole(GlobalConstants.WaiterRoleName))
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="width: 330px">Order ID</th>
+                <th scope="col" style="width: 330px">Client email</th>
+                <th scope="col" style="width: 330px">Client Name</th>
+                <th scope="col" style="width: 200px">Date</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col" style="width: 110px">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr class="clickable-row" data-href="/Order/Index/@item.Id" style="cursor: pointer">
+                    <td>@item.Id</td>
+                    <td>@item.Email</td>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Date.ToLocalTime()</td>
+                    <td>@Math.Round(item.Price, 2)$</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <form method="post" asp-controller="Order" asp-action="Edit">
+                            <input hidden name="orderId" value="@item.Id" />
+                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Pending)
+                            {
+                                <button type="button" class="btn btn-danger remove">Cancel</button>
+                            }
+                            else
+                            {
+                                <span>No actions available!</span>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="width: 330px">Order ID</th>
+                <th scope="col" style="width: 200px">Date</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col" style="width: 110px">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr class="clickable-row" data-href="/Order/Index/@item.Id" style="cursor: pointer">
+                    <td>@item.Id</td>
+                    <td>@item.Date.ToLocalTime()</td>
+                    <td>@Math.Round(item.Price, 2)$</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <form method="post" asp-controller="Order" asp-action="Edit">
+                            <input hidden name="orderId" value="@item.Id" />
+                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Pending)
+                            {
+                                <button type="button" class="btn btn-danger remove">Cancel</button>
+                            }
+                            else
+                            {
+                                <span>No actions available!</span>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-action="All" asp-route-id="@(Model.PreviousPageNumber)">Previous</a>
+        </li>
+        @for (int i = Model.Page - 3; i < Model.Page; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item active"><a class="page-link" href="#">@Model.Page</a></li>
+
+        @for (int i = Model.Page + 1; i <= Model.Page + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }"><a class="page-link" asp-action="All" asp-route-id="@(Model.NextPageNumber)">Next</a></li>
+    </ul>
+</nav>
+
+@section Scripts{
+    <script src="~/js/orderAll.js"></script>
+}

@@ -1,0 +1,86 @@
+﻿@model DrinkItemViewModel
+<link href="~/css/displayFood.css" rel="stylesheet" />
+
+<div id="@Model.Id" class="bg" style="background-image: url(/img/Drinks/@(Model.Image.Id).@(Model.Image.Extension))">
+    <h1 class="foodName title">@Model.Name</h1>
+    <br />
+    <br />
+    <span class="left gray-bg weigth">@Model.Weight grams</span>
+    <span class="right gray-bg price">@Model.Price$</span>
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <form class="right" method="post">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="Type" value="Drink" />
+            <input id="count" name="Count" type="text" style="width: 50px" placeholder="Count" />
+            <button type="button" class="btn btn-success add">Add</button>
+        </form>}
+</div>
+<h1>@Model.AdditionalInfo</h1>
+<span>
+    Ingredients: @{ if (Model.Ingredients.Any())
+        {
+            @string.Join(", ", Model.Ingredients.Select(x => x.Name));
+        }
+        else
+        {
+            <text>None</text>
+        } }
+</span>
+<br />
+<span>
+    Allergens: @{ var allergens = new List<AllergenViewModel>();
+        foreach (var ingr in Model.Ingredients)
+        {
+            allergens.AddRange(ingr.Allergens);
+        }
+        if (allergens.Any())
+        {
+            @string.Join(", ", allergens.Select(x => x.Name));
+        }
+        else
+        {
+            <text>None</text>
+        }
+    }
+</span>
+
+<section class="all-comments">
+    <h2>Comments:</h2>
+    <div class="comments">
+    </div>
+
+
+    <nav aria-label="...">
+        <ul class="pagination">
+        </ul>
+    </nav>
+
+    <div>
+        <form method="post">
+            <input hidden name="id" value="@Model.Id" />
+            <input hidden name="foodType" value="1" />
+            <label>Comment:</label>
+            <br />
+            <textarea name="comment" placeholder="Comment here..."></textarea>
+            <select class="star-rating">
+                <option value="">Select a rating</option>
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Average</option>
+                <option value="2">Poor</option>
+                <option value="1">Terrible</option>
+            </select>
+            <button class="btn btn-success addComment">Add</button>
+        </form>
+    </div>
+</section>
+
+<form method="post" class="antiforgery">
+</form>
+
+@section Scripts
+{
+    <script src="~/js/addToBasket.js"></script>
+    <script src="~/js/comment.js"></script>
+}

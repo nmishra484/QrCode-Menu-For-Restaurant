@@ -1,0 +1,69 @@
+﻿@model AddDrinkViewModel
+
+<link href="~/css/addItemForm.css" rel="stylesheet" />
+<h2>Add drink</h2>
+
+<form asp-controller="Manage" asp-action="AddDrink" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="Weight"></label>
+        <input asp-for="Weight" class="form-control" />
+        <span asp-validation-for="Weight" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="AlchoholByVolume"></label>
+        <input asp-for="AlchoholByVolume" class="form-control" />
+        <span asp-validation-for="AlchoholByVolume" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="AdditionalInfo"></label>
+        <textarea rows="4" asp-for="AdditionalInfo" class="form-control"></textarea>
+        <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="DrinkTypeId"></label>
+        <select asp-for="DrinkTypeId" class="form-control selectpicker" data-dropup-auto="false" asp-items="@Model.DrinkType" data-live-search="true">
+        </select>
+        <span asp-validation-for="DrinkTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="PackagingTypeId"></label>
+        <select asp-for="PackagingTypeId" class="form-control selectpicker" data-dropup-auto="false" asp-items="@Model.PackagingType" data-live-search="true">
+        </select>
+        <span asp-validation-for="PackagingTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="IngredientsId"></label>
+        <select asp-for="IngredientsId" class="form-control selectpicker" multiple asp-items="@Model.Ingredients">
+            <option disabled selected hidden>--- SELECT ---</option>
+        </select>
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label asp-for="Image">Image</label>
+        <input rows="4" asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success col-md-2">Add</button>
+</form>
+

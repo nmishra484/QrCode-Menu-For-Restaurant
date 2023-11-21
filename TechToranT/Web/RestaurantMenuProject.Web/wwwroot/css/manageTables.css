@@ -1,0 +1,14 @@
+﻿table, .buttons {
+    text-align: center;
+}
+
+.refreshCodes, .addTable {
+    display: inline;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.buttons{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

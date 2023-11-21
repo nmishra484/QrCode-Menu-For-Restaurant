@@ -1,0 +1,95 @@
+﻿
+@using RestaurantMenuProject.Common
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" asp-append-version="true" />
+    <link href="~/css/animatecss/animate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link href="~/lib/jquery.datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/css/siteBackground.css" rel="stylesheet" />
+    <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/navbar.css" rel="stylesheet" />
+    <link href="~/lib/star-rating/dist/star-rating.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand siteTitle" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark tab" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark tab" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                        </li>
+                        @if (this.User.IsInRole(GlobalConstants.ChefRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark tab" asp-area="" asp-controller="Chef" asp-action="Index">Chef</a>
+                            </li>
+                        }
+                        @if (this.User.IsInRole(GlobalConstants.WaiterRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark tab" asp-area="" asp-controller="Waiter" asp-action="Index">Waiter</a>
+                            </li>
+                        }
+                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark tab" asp-area="" asp-controller="Manage" asp-action="Index">Manage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark tab" asp-area="" asp-controller="Manage" asp-action="Tables">Tables</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            <span class="glyphicon glyphicon-search"></span>
+            @this.RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container" style="font-size:17px;">
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName
+            <a class="footerButton text-dark" style="float: right;" asp-area="" asp-controller="Contact" asp-action="Index">Contact us</a>
+            <a class="footerButton text-dark" style="float: right;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="~/lib/jquery.datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <script src="~/lib/chartJS/dist/Chart.js"></script>
+    <script src="~/js/navbar.js"></script>
+    <script src="~/js/notifications.js"></script>
+    <script src="~/lib/star-rating/dist/star-rating.js"></script>
+
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

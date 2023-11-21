@@ -1,0 +1,175 @@
+﻿@model WaiterViewModel
+
+<link href="~/css/waiterIndex.css" rel="stylesheet" />
+<h3>New orders:</h3>
+<div class="table-responsive fixed-table-body newOrders">
+    <table id="ordersTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="th-sm">
+                    Table
+                </th>
+                <th class="th-sm">
+                    Date
+                </th>
+                <th class="th-sm">
+                    Client Name
+                </th>
+                <th class="th-sm">
+                    Status
+                </th>
+                <th class="th-sm">
+                    Price
+                </th>
+                <th class="th-sm" width="160px">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.NewOrders)
+            {
+                <tr id="@item.Id">
+                    <th class="th-sm">
+                        @item.TableNumber
+                    </th>
+                    <th class="th-sm">
+                        @item.Date.ToLocalTime()
+                    </th>
+                    <th class="th-sm">
+                        @item.FirstName @item.LastName
+                    </th>
+                    <th class="th-sm">
+                        @item.Status
+                    </th>
+                    <th class="th-sm">
+                        @item.Price.ToString("0.00")$
+                    </th>
+                    <th class="th-sm">
+                        <form method="post" style="display: inline-block;" data-orderId="@item.Id">
+                            <input name="id" value="@item.Id" hidden />
+                            <button class="btn btn-success accept">Accept</button>
+                        </form>
+                        <form method="get" asp-controller="Order" asp-action="Index" asp-route-id="@item.Id" style='display:inline-block;'>
+                            <button class="btn btn-info">Info</button>
+                        </form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="table-responsive pickupTable col-md-6" style="display: inline-block;">
+<h2>Pickup</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="th-sm">
+                    Count
+                </th>
+                <th class="th-sm">
+                    Item
+                </th>
+                <th class="th-sm">
+                    Table
+                </th>
+                <th class="th-sm">
+                    Client
+                </th>
+                <th class="th-sm">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PickupItems)
+            {
+                <tr data-id="@item.Id">
+                    <th class="th-sm count">
+                        @item.Count
+                    </th>
+                    <th class="th-sm">
+                        @item.Name
+                    </th>
+                    <th class="th-sm">
+                        @item.TableNumber
+                    </th>
+                    <th class="th-sm">
+                        @item.ClientName
+                    </th>
+                    <th class="th-sm">
+                        <form method="post">
+                            <input name="id" value="@item.Id" hidden />
+                            <button class="btn btn-success pickupDone">Done</button>
+                        </form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="table-responsive activeTable col-md-6" style="float: right; display: inline;">
+    <h2>Active orders</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="th-sm">
+                    #
+                </th>
+                <th class="th-sm">
+                    Status
+                </th>
+                <th class="th-sm">
+                    Paid
+                </th>
+                <th class="th-sm" style="width: 110px;">
+                    Completed
+                </th>
+                <th class="th-sm">
+                    Cooked%
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ActiveOrders)
+            {
+            <tr id="@item.Id">
+                <th class="th-sm">
+                    @item.TableNumber
+                </th>
+                <th class="th-sm">
+                    @item.ProcessType
+                </th>
+                <th class="th-sm">
+                    @if (item.IsPaid)
+                    {
+                        <button class="btn btn-success pay" disabled>Pay</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger pay">Pay</button>
+                    }
+                </th>
+                <th class="th-sm">
+                    <form method="post">
+                        <input name="id" value="@item.Id" hidden />
+                        <button class="btn btn-success finishOrder">Done</button>
+                    </form>
+                </th>
+                <th class="th-sm">
+                    @item.ReadyPercent%
+                </th>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/signalR/dist/browser/signalr.js"></script>   
+    <script src="~/js/waiterIndex.js"></script>
+}

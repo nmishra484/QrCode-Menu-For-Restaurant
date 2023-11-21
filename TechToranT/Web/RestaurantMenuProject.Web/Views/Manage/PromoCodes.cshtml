@@ -1,0 +1,52 @@
+﻿<style>
+    .action{
+        margin-left: 5px;
+    }
+    .addPromoCode{
+        margin-bottom: 20px;
+    }
+
+
+</style>
+<form method="get">
+    <input class="btn btn-info addPromoCode" type="submit" asp-controller="Manage" asp-action="AddPromoCode" value="Add promo code" />
+</form>
+
+
+<form method="post">
+</form>
+
+<table id="ordersTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th class="th-sm">
+                Id
+            </th>
+            <th class="th-sm">
+                Code
+            </th>
+            <th class="th-sm">
+                Used times
+            </th>
+            <th class="th-sm">
+                Max usage times
+            </th>
+            <th class="th-sm">
+                Promo%
+            </th>
+            <th class="th-sm">
+                Deleted
+            </th>
+            <th class="th-sm">
+                Expiration Date
+            </th>
+            <th class="th-sm" width="120px">
+                Actions
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script src="~/js/managePromoCodes.js"></script>
+}

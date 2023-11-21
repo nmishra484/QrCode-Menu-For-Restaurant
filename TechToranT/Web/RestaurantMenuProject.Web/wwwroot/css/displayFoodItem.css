@@ -1,0 +1,54 @@
+﻿.right {
+    right: -30px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
+#weight {
+    position: absolute;
+    top: 110px;
+    left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.add {
+    position: relative;
+    top: 51px;
+    left: 48px;
+    float: right;
+}
+
+#count {
+    position: relative;
+    top: 51px;
+    left: 98px;
+    float: right;
+}
+
+#price {
+    position: relative;
+    top: 1px;
+    left: 48px;
+    float: right;
+    padding: 0px;
+    padding-top: 6px;
+}
+
+.menuItem {
+    height: 152px;
+}
+
+.gray-bg {
+    background-color: gainsboro;
+    line-height: 35px;
+    position: absolute;
+    z-index: -1;
+    opacity: 1;
+    box-shadow: inset 0px 0px 3px 3px gray;
+}
+
+.edit {
+    position: absolute;
+    top:110px;
+    right: 40px;
+}
