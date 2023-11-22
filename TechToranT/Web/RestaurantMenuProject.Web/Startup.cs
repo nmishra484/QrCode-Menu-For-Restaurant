@@ -77,7 +77,8 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender>(serviceProvider => new SendGridEmailSender(this.configuration["SendGrid-ApiKey"]));
+            //services.AddTransient<IEmailSender>(serviceProvider => new SendGridEmailSender(this.configuration["SendGrid-ApiKey"]));
+            services.AddTransient<IEmailSender>(serviceProvider => new SendGridEmailSender("d-de9afe6e40c84d1b979384b12774c59e"));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IDishTypeService, DishTypeService>();
             services.AddTransient<IDrinkTypeService, DrinkTypeService>();
@@ -103,16 +104,16 @@
             services.AddResponseCaching();
             services.Configure<AuthMessageSenderOptions>(this.configuration);
             services.AddSignalR();
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = this.configuration["Authentication-Facebook-AppId"];
-                facebookOptions.AppSecret = this.configuration["Authentication-Facebook-AppSecret"];
-            })
-            .AddGoogle(options =>
-            {
-                options.ClientId = this.configuration["Authentication-Google-ClientId"];
-                options.ClientSecret = this.configuration["Authentication-Google-ClientSecret"];
-            });
+            //services.AddAuthentication().AddFacebook(facebookOptions =>
+            //{
+            //    facebookOptions.AppId = this.configuration["Authentication-Facebook-AppId"];
+            //    facebookOptions.AppSecret = this.configuration["Authentication-Facebook-AppSecret"];
+            //})
+            //.AddGoogle(options =>
+            //{
+            //    options.ClientId = this.configuration["Authentication-Google-ClientId"];
+            //    options.ClientSecret = this.configuration["Authentication-Google-ClientSecret"];
+            //});
 
             services.AddHangfire(config =>
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)

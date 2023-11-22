@@ -36,7 +36,7 @@
             }
 
 
-        @@keyframes animatedgradient {
+        /* @@keyframes animatedgradient {
             0% {
                 background-position: 0% 50%;
             }
@@ -48,7 +48,7 @@
             100% {
                 background-position: 0% 50%;
             }
-        }
+        } */
 
         .w3-container {
             border-radius: var(--borderWidth);
@@ -59,8 +59,8 @@
             text-align: left;
             margin-top: 15px;
             margin-bottom: 15px;
-            background-image: linear-gradient(to left, blue, red);
-            -webkit-background-clip: text;
+            background-image: linear-gradient(to left, yellow,blue);
+            /* -webkit-background-clip: text; */
             color: transparent;
         }
 
@@ -74,7 +74,7 @@
     </style>
     <cache expires-after="TimeSpan.FromDays(30)">
 
-        <div class="text-center">
+        <div class="text-center mb-4">
             <h1 class="display-4 title">Welcome to @GlobalConstants.SystemName!</h1>
             <h4 class="underTitle">We are here to make you the best food you will ever eat! This is the first ever online restaurant, where you can just make an account, sit on a table, make an order and just wait for the food to arrive. <br /> While you are waiting, you can explore our menu, because every week we add a new delicious dish!</h4>
             <h4 class="textOverImage"> Check it out ↓ </h4>
@@ -119,7 +119,7 @@
             </div>
         </div>
 
-        </cache>
+    </cache>
         <script>
             var slideIndex = 1;
             showDivs(slideIndex);

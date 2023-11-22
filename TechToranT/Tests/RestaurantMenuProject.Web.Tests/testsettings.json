@@ -1,8 +1,7 @@
 {
   "ConnectionStrings": {
     //"DefaultConnection": "Server=.;Database=RestaurantMenuProject;Trusted_Connection=True;MultipleActiveResultSets=true",
-    "DefaultConnection": "Data Source=DIGI-MANISHPAN;Initial Catalog=RestaurantMenuProject;Integrated Security=True;MultipleActiveResultSets=true",
-    "RestaurantMenuProjectWebContextConnection": "Server=(localdb)\\mssqllocaldb;Database=RestaurantMenuProject.Web;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Data Source=STPL-INT-ANUS;Initial Catalog=RestaurantMenuProject;User ID=sa;Password=P@ssw0rd;MultipleActiveResultSets=true;"
   },
     "Logging": {
         "LogLevel": {
