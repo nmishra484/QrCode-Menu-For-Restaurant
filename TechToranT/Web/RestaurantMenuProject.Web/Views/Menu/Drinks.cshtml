@@ -12,8 +12,8 @@
         <span class="description">@item.Description</span>
         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
-    <form asp-controller="Manage" asp-action="EditDrinkType" method="get">
-        <input type="hidden" name="type" value="Drink" />
+    <form asp-controller="Manage" asp-action="EditBeverageType" method="get">
+        <input type="hidden" name="type" value="Beverage" />
         <input type="hidden" name="id" value="@item.Id" />
         <button type="submit" class="btn btn-info edit">Edit</button>
     </form>}

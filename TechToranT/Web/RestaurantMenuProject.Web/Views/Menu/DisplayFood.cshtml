@@ -11,10 +11,8 @@
     @if (this.User.Identity.IsAuthenticated)
     {
 <form class="right" method="post">
-    <input type="hidden" name="Id" value="@Model.Id" />
-    <input type="hidden" name="Type" value="Dish" />
-    <input id="count" type="text" name="Count" style="width: 50px" placeholder="Count" />
-    <button type="button" class="btn btn-success add">Add</button>
+    <input type="hidden" name="Id" value="@Model.Id"/>
+    <input type="hidden" name="Type" value="Dinner"/>
 </form>}
 </div>
 @if (Model.AdditionalInfo != null)
@@ -85,6 +83,7 @@ else if (Model.PrepareTime < 60)
                 <option value="3">Average</option>
                 <option value="2">Poor</option>
                 <option value="1">Terrible</option>
+                <option value="6">Worse</option>
             </select>
             <button class="btn btn-success addComment">Add</button>
         </form>

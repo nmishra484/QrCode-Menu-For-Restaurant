@@ -30,7 +30,7 @@
                     <td>
                         <form method="post" asp-controller="Order" asp-action="Edit">
                             <input hidden name="orderId" value="@item.Id" />
-                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Pending)
+                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Delivered)
                             {
                                 <button type="button" class="btn btn-danger remove">Cancel</button>
                             }
@@ -68,7 +68,7 @@ else
                     <td>
                         <form method="post" asp-controller="Order" asp-action="Edit">
                             <input hidden name="orderId" value="@item.Id" />
-                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Pending)
+                            @if (item.Status == RestaurantMenuProject.Data.Models.Enums.ProcessType.Delivered)
                             {
                                 <button type="button" class="btn btn-danger remove">Cancel</button>
                             }

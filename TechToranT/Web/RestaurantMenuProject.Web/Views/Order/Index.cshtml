@@ -46,7 +46,7 @@
             <tr data-id="@item.Id" data-type="@item.FoodType.ToString()">
                 <td>
                     @{
-                        var foodFolder = item.FoodType.ToString().ToLower() == "drink" ? "Drinks" : "Dishes";
+                        var foodFolder = item.FoodType.ToString().ToLower() == "drink" ? "Drinks" : "Dinner";
                         <img src="~/img/@(foodFolder)/@(item.Image.Id).@(item.Image.Extension) " class="img-fluid" />
 
                     }
