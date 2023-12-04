@@ -14,7 +14,6 @@
     using RestaurantMenuProject.Services.Data.Contracts;
     using RestaurantMenuProject.Services.Messaging;
     using RestaurantMenuProject.Web.Hubs;
-
     [Route("api/[Controller]")]
     [ApiController]
     [IgnoreAntiforgeryToken]
